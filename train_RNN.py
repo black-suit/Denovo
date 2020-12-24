@@ -1,5 +1,12 @@
 import numpy as np
+from keras.models import Sequential
+from keras.layers import Embedding, Dropout
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.layers import Dense, TimeDistributed
+from keras.utils import to_categorical
+import tensorflow as tf
 
+from make_smile import zinc_data_with_bracket_original, zinc_processed_with_bracket
 
 def prepare_data(smiles,all_smile):
   all_smile_index = []
@@ -32,11 +39,11 @@ if __name__ == "__main__":
   print(len(all_smile))
   X_train,y_train = prepare_data(valcabulary,all_smile)
   
-  max_len = 81
+  maxlen = 81
   
-  X = sequence.pad_sequences(X_train, maxlen=81, dtype='int32',
+  X = tf.keras.preprocessing.sequence.pad_sequences(X_train, maxlen=81, dtype='int32',
                              padding='post',truncating='pre',value=0.)
-  y = sequence.pad_sequences(y_train, maxlen=81, dtype='int32',
+  y = tf.keras.preprocessing.sequence.pad_sequences(y_train, maxlen=81, dtype='int32',
                              padding='post',truncating='pre',value=0.)
   
   y_train_one_hot = np.array([to_categorical(sent_label, num_classes=len(valcabulary)) for sent_label in y])
@@ -50,9 +57,9 @@ if __name__ == "__main__":
   model = Sequential()
   
   model.add(Embedding(input_dim=vocab_size,,output_dim=len(valcabulary),input_length=N,mask_zero=False))
-  model.add(GRU(256,input_shape=(81,64),activation='tanh',return_sequences=True))
+  model.add(tf.keras.layers.GRU(256,input_shape=(81,64),activation='tanh',return_sequences=True))
   model.add(Dropout(0.2))
-  model.add(GRU(256,activation='tanh',return_sequences=True))
+  model.add(tf.keras.layers.GRU(256,activation='tanh',return_sequences=True))
   model.add(Dropout(0.2))
   model.add(TimeDistributed(Dense(embed_size,activation='softmax')))
   optimizer = Adam(lr=0.01)
