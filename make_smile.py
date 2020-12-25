@@ -1,7 +1,12 @@
 import csv
+import urllib.request
 
 def zinc_data_with_bracket_original():
+  url = 'https://raw.githubusercontent.com/tsudalab/ChemTS/master/data/250k_rndm_zinc_drugs_clean.smi'
+  urllib.request.urlretrieve(url,'zinc.csv')
+  
   sen_space = []
+  f = open('zinc.csv','r')
   reader = csv.reader(f)
   for row in reader:
     sen_space.append(row)
