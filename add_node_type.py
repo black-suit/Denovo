@@ -11,7 +11,7 @@ from rdkit.Chem import MolFromSmiles, MolToSmiles
 import math
 from rdkit.Chem import AllChem, rdMolDescriptors
 
-from expanded_node(model,state,val):
+def expanded_node(model,state,val):
   all_nodes = []
   end = "\n"
   
@@ -36,4 +36,39 @@ from expanded_node(model,state,val):
     all_nodes.append(next_int)
   all_nodes = list(set(all_nodes))
   print(all_nodes)
+  
   return all_nodes
+
+def node_to_add(all_nodes,val):
+  return added_nodes
+
+def chem_kn_simulation(model,state,val,added_nodes):
+  return all_posible
+
+def predict_smile(all_posible,val):
+  return new_compound
+
+def make_input_smile(generate_smile):
+  return new_compound
+
+def check_node_type(new_compound,SA_mean,SA_std,logP_mean,logP_std,cycle_mean,cycle_std):
+  return node_index,score,valid_compound,all_smile
+
+def logp_calculation(new_compound):
+  print(new_compound[0])
+  logp_value = []
+  all_smile = []
+  distance = []]
+  m = Chem.MolFromSmiles(str(new_compound[0]))
+  try:
+    if m is not None:
+      logp = Descriptors.MolLogP(m)
+      valid_smile.append(new_compound)
+    else:
+      logp = -100
+  except:
+    logp = -100
+  all_smile.append(str(new_compound[0]))
+  
+  return logp,valid_smile,all_smile
+  return logp,valid_smile,all_smile
