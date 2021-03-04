@@ -71,4 +71,3 @@ def logp_calculation(new_compound):
   all_smile.append(str(new_compound[0]))
   
   return logp,valid_smile,all_smile
-  return logp,valid_smile,all_smile
