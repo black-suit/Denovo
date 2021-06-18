@@ -25,7 +25,7 @@ def molblock(mh,ind_lowest):
   mb = Chem.MolToMolBlock(mh,ind_lowest)
   i,j,k = 96,68,95
   n = mh.GetNumAtoms() - 1
-  mb2 = mb[i]+' '+b[j:k]
+  mb2 = mb[i]+' '+mb[j:k]
   for _ in range(n):
     i+=70
     j+=70
